@@ -60,7 +60,12 @@ def train():
 
     # Check Data Existence (Basic check on root)
     if config['env'] == 'server':
-        root = config['data']['server_root']
+        root = config['data'].get('server_root', '')
+        if not root:
+            raise ValueError(
+                "env is 'server' but 'server_root' is not set in config. "
+                "Create a local config_server.yaml that adds this key."
+            )
     elif config['env'] == 'colab':
         root = config['data']['colab_root']
     else:
@@ -74,7 +79,22 @@ def train():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # Data Loaders
-    train_loader, val_loader, _ = get_data_loaders(config)
+    train_loader, val_loader, test_loader = get_data_loaders(config)
+
+    # --- DATASET STATISTICS ---
+    full_dataset = train_loader.dataset.dataset  # unwrap Subset → SolarDataset
+    total_timestamps = len(full_dataset.df)
+    train_samples = len(train_loader.dataset)
+    val_samples   = len(val_loader.dataset)
+    test_samples  = len(test_loader.dataset)
+    print("\n" + "="*55)
+    print("  DATASET STATISTICS")
+    print("="*55)
+    print(f"  Total weather timestamps (daytime, all years): {total_timestamps:>8,}")
+    print(f"  Matched samples — Train  (2017–2020):          {train_samples:>8,}")
+    print(f"  Matched samples — Val    (2021):               {val_samples:>8,}")
+    print(f"  Matched samples — Test   (2022):               {test_samples:>8,}")
+    print("="*55 + "\n")
 
     # Model
     # Use colab-specific weights path when running in Colab.

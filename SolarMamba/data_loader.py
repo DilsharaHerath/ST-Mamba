@@ -19,7 +19,15 @@ class SolarDataset(Dataset):
         
         # Determine Root Path
         if config['env'] == 'server':
-            self.root_dir = config['data']['server_root']
+            # server_root must be set in the environment's own config or overridden
+            # at runtime (e.g. --config config_server.yaml). It is intentionally
+            # absent from the committed config.yaml to avoid leaking server paths.
+            self.root_dir = config['data'].get('server_root', '')
+            if not self.root_dir:
+                raise ValueError(
+                    "env is 'server' but 'server_root' is not set in config. "
+                    "Create a local config_server.yaml that adds this key."
+                )
         elif config['env'] == 'colab':
             self.root_dir = config['data']['colab_root']
         else:

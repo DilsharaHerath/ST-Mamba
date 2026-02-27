@@ -1,0 +1,25 @@
+Training on 'folsom_test_260209' dataset.
+Saving checkpoints to: Results/checkpoints/folsom_test_260209
+Saving best models to: Results/Good models/folsom_test_260209
+Epoch 1: Train Loss: 0.0905, Val Loss: 0.0162, Val RMSE (Avg): 28.5654
+Saved New Best Model (RMSE: 28.5654) to Results/Good models/folsom_test_260209
+Epoch 2: Train Loss: 0.0474, Val Loss: 0.0079, Val RMSE (Avg): 23.0058
+Saved New Best Model (RMSE: 23.0058) to Results/Good models/folsom_test_260209
+Epoch 3: Train Loss: 0.0421, Val Loss: 0.0076, Val RMSE (Avg): 22.2541
+Saved New Best Model (RMSE: 22.2541) to Results/Good models/folsom_test_260209
+Epoch 4: Train Loss: 0.0393, Val Loss: 0.0084, Val RMSE (Avg): 22.7859
+Epoch 5: Train Loss: 0.0372, Val Loss: 0.0075, Val RMSE (Avg): 22.1067
+Saved New Best Model (RMSE: 22.1067) to Results/Good models/folsom_test_260209
+Epoch 6: Train Loss: 0.0357, Val Loss: 0.0072, Val RMSE (Avg): 21.8994
+Saved New Best Model (RMSE: 21.8994) to Results/Good models/folsom_test_260209
+Epoch 7: Train Loss: 0.0343, Val Loss: 0.0064, Val RMSE (Avg): 20.8545
+Saved New Best Model (RMSE: 20.8545) to Results/Good models/folsom_test_260209
+Epoch 8: Train Loss: 0.0333, Val Loss: 0.0071, Val RMSE (Avg): 21.0643
+Epoch 9: Train Loss: 0.0323, Val Loss: 0.0071, Val RMSE (Avg): 21.1791
+Epoch 10: Train Loss: 0.0316, Val Loss: 0.0074, Val RMSE (Avg): 22.2636
+Epoch 11: Train Loss: 0.0308, Val Loss: 0.0063, Val RMSE (Avg): 20.7233
+Saved New Best Model (RMSE: 20.7233) to Results/Good models/folsom_test_260209
+Epoch 12: Train Loss: 0.0302, Val Loss: 0.0072, Val RMSE (Avg): 22.9283
+Epoch 13: Train Loss: 0.0296, Val Loss: 0.0063, Val RMSE (Avg): 20.6490
+Saved New Best Model (RMSE: 20.6490) to Results/Good models/folsom_test_260209
+Epoch 14: Train Loss: 0.0290, Val Loss: 0.0064, Val RMSE (Avg): 20.7284

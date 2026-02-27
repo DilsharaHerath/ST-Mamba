@@ -1,0 +1,3 @@
+Training on 'folsom_14_15_16' dataset.
+Saving checkpoints to: Results/checkpoints/folsom_14_15_16
+Saving best models to: Results/Good models/folsom_14_15_16

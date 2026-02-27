@@ -1,0 +1,3 @@
+Training on 'distorted' dataset.
+Saving checkpoints to: Results/checkpoints/distorted
+Saving best models to: Results/Good models/distorted

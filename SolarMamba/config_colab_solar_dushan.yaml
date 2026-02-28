@@ -1,0 +1,57 @@
+# SolarMamba Configuration
+
+env: "colab" # Options: "local", "server", "colab"
+
+data:
+  # --- Local path (relative to repo root, used when env: "local") ---
+  local_root: "../mock_data_storage"
+
+  # --- Google Colab paths ---
+  # Set these to wherever your data lives inside Colab (Drive mount or HuggingFace download).
+  #
+  # Option A — Google Drive mount:
+  #   colab_root: "/content/drive/MyDrive/SolarMamba_Data"
+  #   colab_csv_path: "/content/drive/MyDrive/SolarMamba_Data/csv_files/Folsom_irradiance_weather.csv"
+  #   colab_image_root: "/content/drive/MyDrive/SolarMamba_Data/datasets/1_Folsom"
+  #
+  # Option B — HuggingFace snapshot (downloaded to /content/data):
+  #   colab_root: "/content/data"
+  #   colab_csv_path: "/content/data/csv_files/Folsom_irradiance_weather.csv"
+  #   colab_image_root: "/content/data/datasets/1_Folsom"
+  colab_root: "/content/drive/MyDrive/SolarMamba_Data"
+  colab_csv_path: "/content/drive/MyDrive/ECCV_Irradiance/Datasets/Irradiance/Folsom_irradiance_weather.csv"
+  colab_image_root: "/content/drive/MyDrive/ECCV_Irradiance/Datasets/Irradiance"
+
+  image_tolerance_sec: 120  # Allow up to 2 minutes gap between weather timestamp and nearest image
+  dataset_type: "folsom_test_260209_2"  # Used for output directory naming
+  months: []  # Not used with the unified CSV + image structure
+  data:
+    years: [2014]   # or [2015, 2016], etc.
+  
+  # Sampling
+  sampling_rate_sec: 60
+  sequence_length: 40 # 40 steps * 60s = 40 minutes history
+  
+  # Image
+  image_size: 512
+  
+  # Loader
+  # Note: On Colab, num_workers is automatically capped to 2 regardless of this value.
+  batch_size: 16
+  num_workers: 20
+
+model:
+  visual_backbone: "mamba_vision_B"
+  temporal_channels: 7 # k*, Temp, Pressure, SZA, Azimuth, sin_hour, cos_hour
+  horizons: [1, 5, 10, 15] # Minutes
+  pretrained_weights: "../weights/mambavision_b_1k.pth"
+  # Colab pretrained weights path (used when env == "colab")
+  colab_pretrained_weights: "/content/SolarMamba_repo/weights/mambavision_b_1k.pth"
+
+training:
+  epochs: 50
+  learning_rate: 5.0e-5 
+  weight_decay: 0.1
+  val_split: 0.1 # Validation split (chronological)
+  test_split: 0.1 # Test split (chronological)
+  seed: 42

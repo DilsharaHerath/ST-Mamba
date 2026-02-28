@@ -37,7 +37,7 @@ data:
   
   # Loader
   # Note: On Colab, num_workers is automatically capped to 2 regardless of this value.
-  batch_size: 16
+  batch_size: 8
   num_workers: 20
 
 model:

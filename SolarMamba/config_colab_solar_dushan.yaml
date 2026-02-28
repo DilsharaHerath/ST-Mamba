@@ -46,7 +46,7 @@ model:
   horizons: [1, 5, 10, 15] # Minutes
   pretrained_weights: "../weights/mambavision_b_1k.pth"
   # Colab pretrained weights path (used when env == "colab")
-  colab_pretrained_weights: "/content/SolarMamba_repo/weights/mambavision_b_1k.pth"
+  colab_pretrained_weights: "/content/ST-Mamba/SolarMamba/weights/mambavision_b_1k.pth"
 
 training:
   epochs: 50

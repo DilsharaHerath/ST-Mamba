@@ -1,0 +1,54 @@
+# =========================
+# TaxiBJ Config (Colab)
+# =========================
+
+env: "colab"   # "server" | "local" | "colab"
+
+data:
+  dataset_type: "taxibj"
+
+  # --- Root paths (only one is used depending on env) ---
+  # Your dataset is in: My Drive/datasets/taxibj
+  colab_root: "/content/drive/MyDrive/datasets/taxibj"
+
+  # (kept for completeness; not used when env=colab)
+  server_root: "/storage2/CV_Irradiance/datasets/taxibj"
+  local_root: "../datasets/taxibj"
+
+  # --- Data loader settings ---
+  batch_size: 4
+  num_workers: 2   # Colab usually has limited CPU; 2 is safer than 4
+
+  # Input sequence length (history)
+  sequence_length: 12
+
+  # Normalization of flow channels (in/out)
+  normalize: true
+
+  # Use external features: time + holiday (+ meteorology if present/loaded)
+  use_external: true
+
+  # Which yearly files to load (expects BJ13..BJ16 .h5 files under root)
+  years: [2013, 2014, 2015, 2016]
+
+
+model:
+  # Multi-horizon like Solar (4 outputs)
+  horizons: [1, 2, 3, 4]
+
+  # Flow-history embedding dim for temporal branch
+  flow_embed_dim: 32
+
+  # Optional pretrained path for mambavision backbone (set null if none)
+  pretrained_weights: null
+
+
+training:
+  epochs: 30
+  learning_rate: 5e-5
+  weight_decay: 1e-4
+
+  val_split: 0.1
+  test_split: 0.1
+
+  viz_every: 5
